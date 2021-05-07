@@ -1,0 +1,85 @@
+[PAUTA]
+1- Usar list, retrieve, create, update, destroy, show para nombrar
+   uris y views
+2- Usar nombres en singular a menos que loa registros guarden listas
+3- Cuando se cambie una uri o view poner comentada la antigua para
+   hacer los cambios en el lado del cliente
+4- Tranformar todas las clases a funciones
+5- Quitar /admin de las uri
+6- Cada funcion debe tener un unico proposito, separar las funciones que
+   cumplan mas de una tarea
+7- Primero va la accion y despues el nombre ej: listNombre
+8- El orden decendente de las views y urls es el siguiente:
+   list, retrieve, create, update, destroy, show. 
+9- Utilizar nombres descriptivos en las pk de las views 
+10- en urls.py comentar los cambios realizados. ej: MODIFICADO de [nombreAntiguo] a [nombreNuevo]
+11- Probar todos los endpoints con postman.
+
+
+api/
+    /paciente
+        /listPaciente [GET]
+            "(admin) Lista todos las instancias de la tabla paciente"
+        /retrievePaciente/<int:pk> [GET]
+            "(user) Devuelve una instancia de paciente"
+        /createPaciente [POST]
+            "(admin) Crea una instancia de paciente"
+        /updatePaciente/<int:pk> [PUT]
+            "(admin) modifica una instancia de paciente"
+        /listTerapeutaPaciente/<int:pk> [GET]
+            "(user) Lista todos las instancias de paciente que pertenecen
+                    al usuario consultante"
+    /terapia
+        /listTerapia [GET]
+            "(admin) Devuelve todas las instancias de la tabla terapia"
+        /listTerapiaTerapeuta [GET]
+            "(user) Devuelve todas las instancias de terapia 
+                    pertenecientes al terapeuta consultante"
+        /retrieveTerapia/<int:pk> [GET]
+            "(user) Devuelve una instancia de terapia"
+        /createTerapia [POST]
+            "(user) Crea una instancia de terapia"
+        /updateTerapia/<int:pkTerapia> [PUT]
+            "(admin) Modifica una instancia de terapia"
+        /listSesion [GET]
+            "(admin) Devuelv todas las instancias de la tabla sesion"
+        /listSesionTerapeuta [GET]
+            "(user) devuelve todas las instancias de la tabla sesion del terapeuta consultante"
+        /listSesion/<int:pkPaciente> [GET]
+            "(user) Devuelve todas las instancias de sesion de un paciente"
+        /retrieveSesion/<int:pkSesion>
+            "(user) Devuelve una instancia de Sesion"
+        /createSesion [PUT]
+            "(user) Crea una instancia de sesion"
+        /updateSesion/<int:pkSesion> [PUT]
+            "(user) Modifica una instancia de sesion"
+        /showCountSesionesMonth [GET]
+            "(user) Muestra el numero de instancias de la tabla sesion
+                    que se registro el mes actual"
+    /terapeuta
+        /listPerfilTerapeuta [GET]
+            "(admin) Devuelve todas las instancias de la tabla
+                     PerfilTerapeuta"
+        /retrievePerfilTerapeuta [GET]
+            "(user) Devuelve la instancia que pertenece a la
+                    cuenta consultante"
+        /updatePerfilTerapeuta [PUT]
+            "(user) Modifica la instancia que pertenece a la
+                    cuenta consultante"
+    /informes
+        /showNumeroHorasMes [GET]
+            "(usuario) Numero de horas atendidas en un mes"
+        /showNumeroPacientes [GET]
+            "(usuario) Cantidad de pacientes totales"
+        /showNumeroSesionesMensuales/<int:mes>/<int:año> [GET]
+            "(admin) Numero de sesiones menusales totales"
+        /showNumeroPacientesActivos [GET]
+            "(admin) Cantidad de pacientes activos" [GET]
+        /showNumeroSesionesAnualesView/<str:prevision>/<int:terapeuta>/<int:año> [GET]
+            "(admin) Devuelve todas las sesiones de un tipo 
+                     de prevision para un terapeuta y año 
+                     determinado (para armar tabla)
+
+
+
+    
